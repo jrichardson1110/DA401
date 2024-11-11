@@ -1,0 +1,43 @@
+---
+title: "StateIsolation"
+author: "Jonah Richardson"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+```
+
+```{r}
+allCensusBlocks <- read_csv("AllCensusBlocksGeodata.csv")
+```
+
+```{r}
+ohio_only_geodata <- allCensusBlocks %>%
+  filter(`State FIPS Code` == 39)
+
+pennsylvania_only_geodata <- allCensusBlocks %>%
+  filter(`State FIPS Code` == 42)
+```
+
+```{r}
+ggplot(ohio_only_geodata, aes(y = `Centroid Latitude`, x = `Centroid Longitude`)) + geom_point()
+```
+
+```{r}
+ggplot(pennsylvania_only_geodata, aes(y = `Centroid Latitude`, x = `Centroid Longitude`)) + geom_point()
+
+```
+
+
+```{r}
+#ONLY RAN ONCE, NO MORE NEEDED
+#write.csv(ohio_only_geodata, "OhioGeodata.csv")
+#write.csv(pennsylvania_only_geodata, "PennsylvaniaGeodata.csv")
+```
+
+
+
